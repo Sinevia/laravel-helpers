@@ -1,6 +1,6 @@
 <?php
 
-namespace Sinevia\Laravel;
+namespace Sinevia\Helpers;
 
 class Ui {
 
