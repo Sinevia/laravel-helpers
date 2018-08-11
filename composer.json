@@ -1,0 +1,42 @@
+{
+    "name": "sinevia/laravel-helpers",
+    "type": "library",
+    "description": "Helpers for Laravel",
+    "keywords": [
+        "Sinevia",
+        "Laravel",
+        "Helpers"
+    ],
+    "homepage": "https://github.com/Sinevia/laravel-helper",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Milan Lesichkov",
+            "email": "lesichkovm@gmail.com",
+            "homepage": "http://lesichkov.co.uk",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "illuminate/support": "~5.1",
+        "php": "~5.6|~7.0"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "Sinevia\\Helpers\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Sinevia\\Helpers\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
