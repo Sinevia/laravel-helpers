@@ -1,5 +1,6 @@
-# laravel-helpers
+# Laravel Helpers
 
+Helpers for laravel
 
 ## UI (User Interface) Helper ##
 
