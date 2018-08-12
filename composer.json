@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Sinevia\\Helpers\\": "src"
+            "Sinevia\\LaravelHelpers\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Sinevia\\Helpers\\": "tests"
+            "Sinevia\\LaravelHelpers\\": "tests"
         }
     },
     "scripts": {
