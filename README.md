@@ -4,6 +4,8 @@ Helpers for laravel
 
 ## UI (User Interface) Helper ##
 
+1. Define the form fields
+
 ```php
 private function getFields() {
   $fields = [
@@ -49,6 +51,8 @@ private function getFields() {
 }
 ```
 
+2. Build the form
+
 ```php
 $form = \Sinevia\LaravelHelpers\Ui::formBuild($this->getFields(), [
       'button.apply.show' => 'yes',
@@ -61,8 +65,15 @@ $form = \Sinevia\LaravelHelpers\Ui::formBuild($this->getFields(), [
   ->toHtml();
 ```
 
+3. Validate and save model
+
 ```php
 $validOrErrorMessage = \Sinevia\LaravelHelpers\Ui::formValidate($this->formFields());
 if ($validOrErrorMessage !== true) {
+    return back()->withErrors($validOrErrorMessage)->withInput(request()->all());
 }
+
+$formValues = \App\Helpers\Ui::formFieldValues($this->getFields());
+\App\Models\YourModel::unguard();
+$yourModel = \App\Models\YourModel::create($formValues);
 ```
