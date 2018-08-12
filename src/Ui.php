@@ -3,6 +3,20 @@
 namespace Sinevia\LaravelHelpers;
 
 class Ui {
+    public static function formFieldValues($fields) {
+        $values = [];
+        
+        foreach ($fields as $field) {
+            $type = trim($field['type'] ?? null);
+            $name = trim($field['name'] ?? null);
+            if($name==''){
+                continue;
+            }
+            $values[$name] = request($name);
+        }
+
+        return $values;
+    }
 
     public static function formValidate($fields) {
         $rules = [];
