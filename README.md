@@ -76,4 +76,15 @@ if ($validOrErrorMessage !== true) {
 $formValues = \App\Helpers\Ui::formFieldValues($this->getFields());
 \App\Models\YourModel::unguard();
 $yourModel = \App\Models\YourModel::create($formValues);
+
+if(is_null($yourModel)){
+    return back()->withErrors('Model creation failed')->withInput(request()->all());
+}
+
+if (request('form_action') == 'apply') {
+    return redirect('/update?ModelId=' . $yourModel->Id]))
+                    ->withSuccess('Model successfully created');
+}
+
+return redirect('/list')->withSuccess('Model successfully created');
 ```
