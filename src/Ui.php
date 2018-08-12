@@ -216,7 +216,7 @@ class Ui {
         $form = (new \Sinevia\Html\Form)->setMethod($formAction);
 
         if ($hasButtons AND $formButtonsTop == 'yes') {
-            $rowButtonsTop = $rowButtons;
+            $rowButtonsTop = clone($rowButtons);
             $rowButtonsTop->addClass('row-buttons');
             $rowButtonsTop->addClass('row-buttons-top');
             $form->addChild($rowButtonsTop);
@@ -225,10 +225,10 @@ class Ui {
         $form->addChild($rowFields);
 
         if ($hasButtons AND $formButtonsBottom == 'yes') {
-            $rowButtonsTop = $rowButtons;
-            $rowButtonsTop->addClass('row-buttons');
-            $rowButtonsTop->addClass('row-buttons-bottom');
-            $form->addChild($rowButtons);
+            $rowButtonsBottom = clone($rowButtons);
+            $rowButtonsBottom->addClass('row-buttons');
+            $rowButtonsBottom->addClass('row-buttons-bottom');
+            $form->addChild($rowButtonsBottom);
         }
 
         // CSRF field
