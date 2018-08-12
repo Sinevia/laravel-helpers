@@ -235,6 +235,8 @@ class Ui {
         if ($formCsrfField == 'yes') {
             $form->addChild($csrfField);
         }
+        
+        $form->addChild($formActionField);
 
         return $form;
     }
