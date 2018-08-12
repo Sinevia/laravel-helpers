@@ -60,3 +60,9 @@ $form = \Sinevia\LaravelHelpers\Ui::formBuild($this->getFields(), [
   ])
   ->toHtml();
 ```
+
+```php
+$validOrErrorMessage = \Sinevia\LaravelHelpers\Ui::formValidate($this->formFields());
+if ($validOrErrorMessage !== true) {
+}
+```
