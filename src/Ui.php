@@ -36,9 +36,40 @@ class Ui {
     }
 
     public static function formBuild($fields, $options = []) {
-        $submitText = $options['submit_text'] ?? 'Submit';
+        $formAction = $options['form.action'] ?? 'POST';
+        $formButtonsTop = $options['form.buttons.top'] ?? 'yes';
+        $formButtonsBottom = $options['form.buttons.bottom'] ?? 'yes';
+        $formCsrfField = $options['form.csrf.field'] ?? 'yes';
+        $buttonApplyIcon = $options['button.apply.icon'] ?? '';
+        $buttonApplyText = $options['button.apply.text'] ?? 'Apply';
+        $buttonApplyShow = $options['button.apply.show'] ?? 'no';
+        $buttonSaveIcon = $options['button.save.icon'] ?? '';
+        $buttonSaveText = $options['button.save.text'] ?? 'Save';
+        $buttonSaveShow = $options['button.save.show'] ?? 'yes';
+        $buttonCancelIcon = $options['button.cancel.icon'] ?? '';
+        $buttonCancelText = $options['button.cancel.text'] ?? 'Cancel';
+        $buttonCancelShow = $options['button.cancel.show'] ?? 'no';
+        $buttonCancelLink = $options['button.cancel.link'] ?? '';
+        $buttonCancelClick = $options['button.cancel.click'] ?? '';
+        $hasApplyButton = $buttonApplyShow == 'yes';
+        $hasCancelButton = $buttonCancelShow == 'yes';
+        $hasSaveButton = $buttonSaveShow == 'yes';
+        $hasButtons = ($hasApplyButton OR $hasCancelButton OR $hasSaveButton);
+        $fieldFormActionId = 'id_' . uniqid();
 
-        $form = (new \Sinevia\Html\Form)->setMethod('POST')->setClass('row');
+        $csrfField = (new \Sinevia\Html\Input)
+                ->setName('_token')
+                ->setValue(csrf_token())
+                ->setType(\Sinevia\Html\Input::TYPE_HIDDEN);
+
+        $formActionField = (new \Sinevia\Html\Input)
+                ->setId($fieldFormActionId)
+                ->setName('form_action')
+                ->setValue('save')
+                ->setType(\Sinevia\Html\Input::TYPE_HIDDEN);
+
+        $rowFields = (new \Sinevia\Html\Div)
+                ->setClass('row');
 
 
         foreach ($fields as $field) {
@@ -53,7 +84,7 @@ class Ui {
             $html = trim($field['html'] ?? null); // for "html" fields only
 
             if ($type == 'html') {
-                $form->addChild($html);
+                $rowFields->addChild($html);
                 continue;
             }
 
@@ -133,24 +164,77 @@ class Ui {
                 $formGroup->addChild($hiddenInput);
             }
 
-            $form->addChild($formGroup);
+            $rowFields->addChild($formGroup);
         }
 
-        $buttonSave = (new \Sinevia\Html\Button())
-                ->setClass('btn btn-success')
-                ->setType('submit')
-                ->setText($submitText);
+        $rowButtons = (new \Sinevia\Html\Div)->setClass('row');
+        $colButtons = (new \Sinevia\Html\Div)
+                ->setClass('col-sm-12')
+                ->setParent($rowButtons);
 
-        $formGroup = (new \Sinevia\Html\Div)->setClass('form-group col-sm-12');
-        $formGroup->addChild($buttonSave);
-        $form->addChild($formGroup);
+        // Button Save
+        if ($buttonSaveShow == 'yes') {
+            if ($buttonSaveIcon != '') {
+                $buttonSaveText = $buttonSaveIcon . ' ' . $buttonSaveText;
+            }
+            $buttonSave = (new \Sinevia\Html\Button())
+                    ->setClass('btn btn-success button-save float-right')
+                    ->setType('submit')
+                    ->setText($buttonSaveText)
+                    ->setOnClick("document.getElementById('$fieldFormActionId').value='save';");
 
-        $csrfField = (new \Sinevia\Html\Input)
-                ->setName('_token')
-                ->setValue(csrf_token())
-                ->setType(\Sinevia\Html\Input::TYPE_HIDDEN);
+            $colButtons->addChild($buttonSave);
+        }
+        
+        // Button Apply
+        if ($buttonApplyShow == 'yes') {
+            if ($buttonApplyIcon != '') {
+                $buttonApplyText = $buttonApplyIcon . ' ' . $buttonApplyText;
+            }
+            
+            $buttonApply = (new \Sinevia\Html\Button())
+                    ->setClass('btn btn-success button-apply float-right')
+                    ->setType('submit')
+                    ->setText($buttonApplyText)
+                    ->setOnClick("document.getElementById('$fieldFormActionId').value='apply';");
 
-        $form->addChild($csrfField);
+            $colButtons->addChild($buttonApply);
+        }        
+
+        // Button Cancel        
+        if ($buttonCancelShow == 'yes') {
+            if ($buttonCancelIcon != '') {
+                $buttonCancelText = $buttonCancelIcon . ' ' . $buttonCancelText;
+            }
+            $buttonCancel = (new \Sinevia\Html\Hyperlink())
+                    ->setUrl($buttonCancelLink)
+                    ->setClass('btn btn-success button-cancel')
+                    ->setText($buttonCancelText);
+            $colButtons->addChild($buttonCancel);
+        }
+
+        $form = (new \Sinevia\Html\Form)->setMethod($formAction);
+
+        if ($hasButtons AND $formButtonsTop == 'yes') {
+            $rowButtonsTop = $rowButtons;
+            $rowButtonsTop->addClass('row-buttons');
+            $rowButtonsTop->addClass('row-buttons-top');
+            $form->addChild($rowButtonsTop);
+        }
+
+        $form->addChild($rowFields);
+
+        if ($hasButtons AND $formButtonsBottom == 'yes') {
+            $rowButtonsTop = $rowButtons;
+            $rowButtonsTop->addClass('row-buttons');
+            $rowButtonsTop->addClass('row-buttons-bottom');
+            $form->addChild($rowButtons);
+        }
+
+        // CSRF field
+        if ($formCsrfField == 'yes') {
+            $form->addChild($csrfField);
+        }
 
         return $form;
     }
