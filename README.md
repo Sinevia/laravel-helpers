@@ -9,7 +9,8 @@ Helpers for laravel
 1. Define the form fields
 
 ```php
-private function getFields() {
+private function getFields($options = []) {
+  $model = $options['model'] ?? null;
   $fields = [
       [
           'type' => 'html',
@@ -25,6 +26,7 @@ private function getFields() {
           'label' => 'Text Field',
           'width' => 12,
           'rule' => 'required',
+          'value' => is_null($model) ? null : '' . $model->TextField,
       ],
       [
           'type' => 'textarea',
@@ -32,6 +34,7 @@ private function getFields() {
           'label' => 'Text Area',
           'width' => 12,
           'rule' => 'required',
+          'value' => is_null($model) ? null : '' . $model->TextArea,
       ],
       [
           'type' => 'hidden',
@@ -39,6 +42,7 @@ private function getFields() {
           'label' => 'Hidden Field',
           'width' => 12,
           'rule' => 'required',
+          'value' => is_null($model) ? null : '' . $model->HiddenField,
       ],
       [
           'type' => 'select',
@@ -47,6 +51,7 @@ private function getFields() {
           'options' => [''=>'','1'=>'1','2'=>'2',],
           'width' => 12,
           'rule' => 'required',
+          'value' => is_null($model) ? null : '' . $model->SelectField,
       ],
   ];
   return $fields;
