@@ -49,7 +49,7 @@ private function getFields() {
 ```
 
 ```php
-$form = \Sinevia\Helpers\Ui::formBuild($this->getFields(), [
+$form = \Sinevia\LaravelHelpers\Ui::formBuild($this->getFields(), [
       'button.apply.show' => 'yes',
       'button.cancel.show' => 'yes',
       'button.cancel.link' => '/back',
