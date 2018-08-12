@@ -18,6 +18,7 @@
         }
     ],
     "require": {
+        "sinevia/php-framework-html":"~0.0.9"
     },
     "require-dev": {
     },
