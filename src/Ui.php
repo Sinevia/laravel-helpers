@@ -173,7 +173,6 @@ class Ui {
                 ->setParent($rowButtons);
 
         // Button Save
-        var_dump($hasSaveButton);
         if ($hasSaveButton) {
             if ($buttonSaveIcon != '') {
                 $buttonSaveText = $buttonSaveIcon . ' ' . $buttonSaveText;
@@ -188,7 +187,6 @@ class Ui {
         }
         
         // Button Apply
-        var_dump($hasApplyButton);
         if ($hasApplyButton == 'yes') {
             if ($buttonApplyIcon != '') {
                 $buttonApplyText = $buttonApplyIcon . ' ' . $buttonApplyText;
@@ -204,7 +202,6 @@ class Ui {
         }        
 
         // Button Cancel
-        var_dump($hasCancelButton);
         if ($hasCancelButton) {
             if ($buttonCancelIcon != '') {
                 $buttonCancelText = $buttonCancelIcon . ' ' . $buttonCancelText;
