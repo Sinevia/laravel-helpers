@@ -3,20 +3,6 @@
 namespace Sinevia\LaravelHelpers;
 
 class Ui {
-    public static function formFieldValues($fields) {
-        $values = [];
-        
-        foreach ($fields as $field) {
-            $type = trim($field['type'] ?? null);
-            $name = trim($field['name'] ?? null);
-            if($name==''){
-                continue;
-            }
-            $values[$name] = request($name);
-        }
-
-        return $values;
-    }
 
     public static function formValidate($fields) {
         $rules = [];
@@ -187,7 +173,8 @@ class Ui {
                 ->setParent($rowButtons);
 
         // Button Save
-        if ($buttonSaveShow == 'yes') {
+        var_dump($hasSaveButton);
+        if ($hasSaveButton) {
             if ($buttonSaveIcon != '') {
                 $buttonSaveText = $buttonSaveIcon . ' ' . $buttonSaveText;
             }
@@ -201,7 +188,8 @@ class Ui {
         }
         
         // Button Apply
-        if ($buttonApplyShow == 'yes') {
+        var_dump($hasApplyButton);
+        if ($hasApplyButton == 'yes') {
             if ($buttonApplyIcon != '') {
                 $buttonApplyText = $buttonApplyIcon . ' ' . $buttonApplyText;
             }
@@ -215,8 +203,9 @@ class Ui {
             $colButtons->addChild($buttonApply);
         }        
 
-        // Button Cancel        
-        if ($buttonCancelShow == 'yes') {
+        // Button Cancel
+        var_dump($hasCancelButton);
+        if ($hasCancelButton) {
             if ($buttonCancelIcon != '') {
                 $buttonCancelText = $buttonCancelIcon . ' ' . $buttonCancelText;
             }
