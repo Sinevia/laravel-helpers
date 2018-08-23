@@ -3,7 +3,29 @@
 namespace Sinevia\LaravelHelpers;
 
 class Ui {
+    /**
+     * Returns the submitted form name-value pairs as asscoiative array
+     * @return array
+     */
+    public static function formFieldValues($fields) {
+        $values = [];
+        
+        foreach ($fields as $field) {
+            $type = trim($field['type'] ?? null);
+            $name = trim($field['name'] ?? null);
+            if($name==''){
+                continue;
+            }
+            $values[$name] = request($name);
+        }
 
+        return $values;
+    }
+
+    /**
+     * Validates the passed form fields
+     * @return array
+     */
     public static function formValidate($fields) {
         $rules = [];
         foreach ($fields as $field) {
@@ -35,6 +57,10 @@ class Ui {
         return true;
     }
 
+    /**
+     * Builds a form from the specified fields
+     * @return object a Form object
+     */
     public static function formBuild($fields, $options = []) {
         $formAction = $options['form.action'] ?? 'POST';
         $formButtonsTop = $options['form.buttons.top'] ?? 'yes';
