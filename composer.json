@@ -18,7 +18,7 @@
         }
     ],
     "require": {
-        "sinevia/php-library-html": "~0.0.9"
+        "sinevia/php-library-html": ">=2.0.0"
     },
     "require-dev": {
     },
