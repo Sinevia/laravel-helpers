@@ -1,0 +1,68 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "767a74e60b03292cf818b27b93444460",
+    "packages": [
+        {
+            "name": "sinevia/php-library-html",
+            "version": "v2.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sinevia/php-library-html.git",
+                "reference": "3f872e67e4fc13eef59638ef8ff6640a86d7baa4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sinevia/php-library-html/zipball/3f872e67e4fc13eef59638ef8ff6640a86d7baa4",
+                "reference": "3f872e67e4fc13eef59638ef8ff6640a86d7baa4",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^8.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sinevia\\Html\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Milan Lesichkov",
+                    "email": "lesichkovm@gmail.com",
+                    "homepage": "http://lesichkov.co.uk",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "PHP Library HTML",
+            "homepage": "http://github.com/sinevia/php-library-html",
+            "keywords": [
+                "html",
+                "library",
+                "php",
+                "sinevia"
+            ],
+            "support": {
+                "issues": "https://github.com/Sinevia/php-library-html/issues",
+                "source": "https://github.com/Sinevia/php-library-html/tree/master"
+            },
+            "time": "2020-07-19T20:57:30+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}

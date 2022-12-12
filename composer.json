@@ -18,9 +18,7 @@
         }
     ],
     "require": {
-        "sinevia/php-library-html": ">=2.0.0"
-    },
-    "require-dev": {
+        "sinevia/php-library-html": ">=2.3"
     },
     "autoload": {
         "psr-4": {

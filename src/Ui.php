@@ -143,7 +143,7 @@ class Ui {
                 $input = (new \Sinevia\Html\Select)
                         ->setClass('form-control')
                         ->setName($name);
-                //->setValue($value);
+                        
                 foreach ($options as $optionKey => $optionValue) {
                     $selected = $optionKey == $value ? true : false;
                     $input->addItem($optionKey, $optionValue, $selected);
